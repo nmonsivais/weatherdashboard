@@ -1,0 +1,27 @@
+Try and complete the homework in the following 5 phases. Get a phase fully functional before moving onto the next one. 
+
+*ONLY* once you've completed all 5 phases should you even consider writing some CSS and formatting your page.
+
+SECTION 1: DISPLAYING CURRENT WEATHER
+1. Create a function that allows you to get the weather for a city (hard code the city for now). See activity 05-Bujumbura 
+2. Create a button on the page that calls this function
+3. Once you receive the object, you can put the name of the city, the date, the temperature, the humidity and wind speed on the page. 
+4. Find from the API documentation how to get the UV Index for the current date, create a method to get this, and call it from within your current method's `.then()`.
+5. Don't forget to use MomentJS to parse the date from unix to a readable format.
+
+SECTION 2: DYNAMICISM
+1. Make it dynamic by creating an input box, and passing the user input to the function call rather than hard coding it.
+2. Test it by searching for and displaying weather for different cities
+
+PHASE 3: SAVING CITY HISTORY
+1. For this section, you want to save the value of each search (i.e. Nashville, Atlanta etc.) to an array of cities. On each search, update the array and save to localstorage. You'll need to make use of `JSON.stringify()` when saving the array and `JSON.parse()` when retrieving the array.
+2. When the page loads, the localstorage array should be retrieved and set to the variable holding the cities array.
+3. Go through this array, and display them to the page. You might think about only displaying the last 10 or so.
+
+PHASE 4: 5 DAY FORECAST
+1. Create a separate function that hits the queryURL for openweather that returns the forecast to you. 
+2. You can call this function at the same time as you get the current weather by using a click event on the same button. 
+3. Get the response console.logged first! Once you're getting the response, you'll want to loop through the area and create the items on the page. 
+
+PHASE 5: LOAD THE FORECAST FOR THE MOST RECENTLY SEARCHED CITY
+1. You already have the list of cities being pulled when you load the page. Now you just need to grab the value of the last item in the array (think `.length - 1`) and call your get forecast and get current weather functions.
