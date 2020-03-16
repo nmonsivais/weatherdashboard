@@ -25,3 +25,21 @@ PHASE 4: 5 DAY FORECAST
 
 PHASE 5: LOAD THE FORECAST FOR THE MOST RECENTLY SEARCHED CITY
 1. You already have the list of cities being pulled when you load the page. Now you just need to grab the value of the last item in the array (think `.length - 1`) and call your get forecast and get current weather functions.
+
+Local Storage by Alec:
+
+$("#8am").on('click', function () {
+            var userInput = $("#8am-input").val();;
+            console.log(userInput)
+            localStorage.setItem("8am", userInput)
+        })
+        $("#9am").on('click', function () {
+            var userInput = $("#9am-input").val();;
+            console.log(userInput)
+            localStorage.setItem("9am", userInput)
+        })
+        $("#10am").on('click', function () {
+            var userInput = $("#10am-input").val();;
+            console.log(userInput)
+            localStorage.setItem("10am", userInput)
+        })
