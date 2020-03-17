@@ -11,6 +11,9 @@ $.ajax({
 }).then(function(response) {
   var kelvinTemp = response.main.temp;
   var fahrenheit = (kelvinTemp - 273.15) * 1.8;
+  var city = response.name;
+  var wind = response.wind.speed;
+  var humidity = response.main.humidity;
 
   console.log(queryURL);
   console.log(response);
@@ -19,4 +22,9 @@ $.ajax({
   console.log("The temperature in Fahrenheit is " + fahrenheit);
   console.log(response.main.humidity);
   console.log(response.wind.speed);
+
+  $(".city").text("City: " + city);
+  $(".wind").text("Wind: " + wind);
+  $(".humidity").text("Humidity: " + humidity);
+  $(".temp").text("Temperature: " + fahrenheit);
 });
