@@ -17,7 +17,7 @@ function weather(queryTerm) {
   var queryURL =
     "https://api.openweathermap.org/data/2.5/weather?q=" +
     queryTerm +
-    "&appid=" +
+    "&units=imperial&appid=" +
     APIKey;
   console.log(queryURL);
 
@@ -33,7 +33,6 @@ function weather(queryTerm) {
     $(".wind").text("Wind: " + wind);
     $(".humidity").text("Humidity: " + humidity);
     $(".temp").text("Temperature: " + fahrenheit);
-
     $("#weatherBox").append(information);
   });
 }
