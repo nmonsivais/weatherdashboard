@@ -2,8 +2,18 @@ var APIKey = "cda32d604d850c123a48e324b1c48dbb";
 var queryURL =
   "https://api.openweathermap.org/data/2.5/weather?q=Nashville,Tennessee&units=imperial&appid=" +
   APIKey;
-var object =
-  "https://api.openweathermap.org/data/2.5/weather?q=Nashville,Tennessee&units=imperial&appid=cda32d604d850c123a48e324b1c48dbb";
+
+//create time function from moment.js
+function time() {
+  var time = moment().format("MMMM Do YYYY, h:mm:ss a");
+  return time;
+}
+var example = $("#time").text(time);
+//need 3 ajax calls (weather, UV, forecast)
+
+//3 query URLs (1 for weather, one for UV, and one for forecast)
+
+//create local storage
 
 function weather() {
   $.ajax({
@@ -22,6 +32,7 @@ function weather() {
     $(".temp").text("Temperature: " + fahrenheit);
   });
 }
+
 //   console.log(queryURL);
 //   console.log(response);
 //   console.log(response.name);
