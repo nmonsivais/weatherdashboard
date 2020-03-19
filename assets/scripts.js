@@ -54,6 +54,7 @@ function weather(queryCity) {
 console.log(weather);
 
 $("#btn1").on("click", function(e) {
+  /// event listener
   console.log("youclickme");
   e.preventDefault();
 
@@ -72,6 +73,14 @@ $("#btn1").on("click", function(e) {
   weather(userCity);
   //This clears what the user already typed.
   $("#userInput").val("");
+});
+//This onClick event listener allows me to retrieve the information for each city.
+$(".classCity").on("click", function(e) {
+  e.preventDefault();
+  var cityName = $(this).attr("data-city");
+  weather(cityName);
+
+  console.log("ClassCity button is working");
 });
 /// make a function to retrieving items in localstorage aka jar
 // This function needs to run prior to the button click.
@@ -98,11 +107,14 @@ function renderCities() {
 
     var dynBtns = $("<button>");
     dynBtns.text(city);
+    dynBtns.attr("data-city", city);
+    dynBtns.attr("class", "classCity");
     $("#cityList").append(dynBtns);
   }
   // for every city  we create an element
   // place that element on the page
 }
+
 /// make another function to write to local storage
 
 //local storage code
