@@ -1,12 +1,16 @@
 var todaysDate = $("#time").text(setTime);
 var APIKey = "cda32d604d850c123a48e324b1c48dbb";
-var queryCity = "";
+var emptyCityArray = [];
+// var queryCity = "";
 
 //create time function from moment.js
 function setTime() {
   var time = moment().format("MMMM Do YYYY, h:mm:ss a");
   return time;
 }
+
+init();
+
 //3 query URLs (1 for weather, one for UV, and one for forecast)
 
 //need 3 ajax calls (weather, UV, forecast)
@@ -54,15 +58,58 @@ $("#btn1").on("click", function(e) {
   e.preventDefault();
 
   var newDiv = $("<div>");
+  //This var is what the user is typing.
   var userCity = $("#userInput")
     .val()
     .trim();
   newDiv.text(userCity);
+  emptyCityArray.push(userCity);
+
+  localStorage.setItem("citynames", JSON.stringify(emptyCityArray));
+  // update page to have the new city that was added
+  renderCities();
 
   weather(userCity);
-
+  //This clears what the user already typed.
   $("#userInput").val("");
 });
+/// make a function to retrieving items in localstorage aka jar
+// This function needs to run prior to the button click.
+function init() {
+  var storedCities = JSON.parse(localStorage.getItem("citynames"));
+  if (storedCities !== null) {
+    // if stored Cities is not empty
+    emptyCityArray = storedCities; // update emptyCityArray to storedCities
+  }
+
+  // call function that renders city names on the page
+  renderCities();
+
+  console.log("Values in the jar ");
+  console.log(emptyCityArray);
+}
+//Function below allows cities to appear as buttons.
+function renderCities() {
+  ///loop thru emptyCityArray
+  $("#cityList").empty();
+  for (var i = 0; i < emptyCityArray.length; i++) {
+    var city = emptyCityArray[i];
+    console.log(city);
+
+    var dynBtns = $("<button>");
+    dynBtns.text(city);
+    $("#cityList").append(dynBtns);
+  }
+  // for every city  we create an element
+  // place that element on the page
+}
+/// make another function to write to local storage
+
+//local storage code
+// var cityList = $("#cityList");
+// var cityNames = localStorage.getItem("cityNames");
+
+// cityList.html(cityNames);
 
 //   console.log(queryURL);
 //   console.log(response);
