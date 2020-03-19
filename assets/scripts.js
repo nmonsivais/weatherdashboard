@@ -1,6 +1,6 @@
-var example = $("#time").text(setTime);
+var todaysDate = $("#time").text(setTime);
 var APIKey = "cda32d604d850c123a48e324b1c48dbb";
-var queryTerm = "";
+var queryCity = "";
 
 //create time function from moment.js
 function setTime() {
@@ -13,26 +13,37 @@ function setTime() {
 
 //create local storage
 
-function weather(queryTerm) {
-  var queryURL =
+// query for weather
+function weather(queryCity) {
+  var queryURLweather =
     "https://api.openweathermap.org/data/2.5/weather?q=" +
-    queryTerm +
+    queryCity +
     "&units=imperial&appid=" +
     APIKey;
-  console.log(queryURL);
+  console.log(queryURLweather);
+
+  var queryURLforecast =
+    "https://api.openweathermap.org/data/2.5/forecast?q=" +
+    queryCity +
+    "&units=imperial&appid=" +
+    APIKey;
+
+  console.log(queryURLforecast);
 
   $.ajax({
-    url: queryURL,
+    url: queryURLweather,
     method: "GET"
   }).then(function(response) {
     var fahrenheit = response.main.temp;
     var city = response.name;
     var wind = response.wind.speed;
     var humidity = response.main.humidity;
-    var information = $(".city").text("City: " + city);
-    $(".wind").text("Wind: " + wind);
-    $(".humidity").text("Humidity: " + humidity);
-    $(".temp").text("Temperature: " + fahrenheit);
+    var todaysDate = $("#time").text(setTime);
+    var information = $("#city").text("City: " + city);
+    $("#wind").text("Wind: " + wind);
+    $("#humidity").text("Humidity: " + humidity);
+    $("#temp").text("Temperature: " + fahrenheit);
+    // $("#date").text("Date: " + todaysDate);
     $("#weatherBox").append(information);
   });
 }
