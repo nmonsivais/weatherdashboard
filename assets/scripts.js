@@ -1,3 +1,4 @@
+//Global Variables
 var todaysDate = $("#time").text(setTime);
 var APIKey = "cda32d604d850c123a48e324b1c48dbb";
 var emptyCityArray = [];
@@ -18,6 +19,8 @@ init();
 //create local storage
 
 // query for weather
+
+//Functions
 function weather(queryCity) {
   $("#forecast").empty();
   var queryURLweather =
@@ -58,9 +61,12 @@ function weather(queryCity) {
     for (var i = 0; i < 5; i++) {
       var card = $("<div class= 'card-group'>");
       var cityName = $("<div>").text(response.city.name);
-      card.append(response.list[i].main.temp);
-      card.append(cityName);
-      card.append(response.list[i].main.humidity);
+      var mainTemp = $("<div>").text(response.list[i].main.temp);
+      var mainHumidity = $("<div>").text(response.list[i].main.humidity);
+
+      card.append("City: ", cityName);
+      card.append("Temperature: ", mainTemp);
+      card.append("Humidity: ", mainHumidity);
       newDiv.append(card);
     }
     $("#forecast").append(newDiv);
