@@ -19,20 +19,13 @@ init();
 
 // query for weather
 function weather(queryCity) {
+  $("#forecast").empty();
   var queryURLweather =
     "https://api.openweathermap.org/data/2.5/weather?q=" +
     queryCity +
     "&units=imperial&appid=" +
     APIKey;
   console.log(queryURLweather);
-
-  var queryURLforecast =
-    "https://api.openweathermap.org/data/2.5/forecast?q=" +
-    queryCity +
-    "&units=imperial&appid=" +
-    APIKey;
-
-  console.log(queryURLforecast);
 
   $.ajax({
     url: queryURLweather,
@@ -50,6 +43,30 @@ function weather(queryCity) {
     // $("#date").text("Date: " + todaysDate);
     $("#weatherBox").append(information);
   });
+
+  var queryURLforecast =
+    "https://api.openweathermap.org/data/2.5/forecast?q=" +
+    queryCity +
+    "&units=imperial&appid=" +
+    APIKey;
+
+  $.ajax({
+    url: queryURLforecast,
+    method: "GET"
+  }).then(function(response) {
+    var newDiv = $("<div>");
+    for (var i = 0; i < 5; i++) {
+      var card = $("<div class= 'card-group'>");
+      var cityName = $("<div>").text(response.city.name);
+      card.append(response.list[i].main.temp);
+      card.append(cityName);
+      card.append(response.list[i].main.humidity);
+      newDiv.append(card);
+    }
+    $("#forecast").append(newDiv);
+  });
+
+  console.log(queryURLforecast);
 }
 console.log(weather);
 
@@ -75,7 +92,7 @@ $("#btn1").on("click", function(e) {
   $("#userInput").val("");
 });
 //This onClick event listener allows me to retrieve the information for each city.
-$(".classCity").on("click", function(e) {
+$(document).on("click", ".classCity", function(e) {
   e.preventDefault();
   var cityName = $(this).attr("data-city");
   weather(cityName);
