@@ -5,43 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather Dashboard</title>
     <link rel="stylesheet" href="assets/style.css" />
-    
   </head>
 
   <body>
     <h1 id="time"></h1>
     <form>
-    <input id="userInput" placeholder="Enter city name.">
-    <button id="btn1">Get Weather</button>
-    <br /><br />
-  </form>
+      <input id="userInput" placeholder="Enter city name." />
+      <button id="btn1">Get Weather</button>
+      <br /><br />
+    </form>
 
-   
     <container id="cont1">
       <div id="weatherBox">
-      <p id="date"></p>
-      <p id="city"></p>
-      <p id="wind"></p>
-      <p id="humidity"></p>
-      <p id="temp"></p>
-      <p id="uv"></p>
-    </div>
+        <p id="date"></p>
+        <p id="city"></p>
+        <p id="wind"></p>
+        <p id="humidity"></p>
+        <p id="temp"></p>
+        <p id="uv"></p>
+      </div>
     </container>
 
-    <div id=cityList>  
-    
-    </div>
-
+    <div id="cityList"></div>
+    <!-- Script below is for jquery to work. -->
     <script
       src="https://code.jquery.com/jquery-3.4.1.js"
       integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
       crossorigin="anonymous"
     ></script>
-
-    <script src =
-      "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-
-    </script>
+    <!-- Script below is for moment.js to work. -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <!-- Script below is linking my JS file to HTML. -->
     <script src="assets/scripts.js"></script>
   </body>
 </html>
